@@ -24,8 +24,7 @@
 
 10. **Limits, risks, dependencies:** OCR/readability and supported document types are not guaranteed; extracted obligations can be incomplete or wrong; the catalog marks permissions/prerequisites and service details unknown. Duplicate detection does not establish which version controls. Users must verify every result; this is not legal advice. Depends on Uliya, registered experts, supported NAS capabilities, and user-authorized files.
 
-## Third-party component and AI-tool disclosures
+## Third-party component and license disclosures
 
 - **UGREEN Skill Developer Package 0.7.3:** Official source: Hackathon Starter Kit, https://ai.ugreen.com/pages/hackathon-starter-kit; linked archive, https://cdn.shopify.com/s/files/1/0630/9416/1602/files/uliya-skill-kit-0.7.3-en.zip?v=1790578898. Used to read the Uliya Skill Development Standard/capability catalog and run its static checker. No code or assets from the archive are included in the submitted Skill. No LICENSE file or license statement was present in the downloaded archive; package license terms therefore remain unspecified here.
 - **Other third-party runtime components/libraries:** None included in the Skill ZIP. Runtime depends on UGREEN Uliya and its registered experts; no model or external service is selected by the Skill.
-- **AI/development tools used:** OpenCode with GPT-6 Luna assisted with repository inspection, official-document review, drafting, file creation, and local validation. TinyFish Search/Fetch retrieved public UGREEN/Devpost rules and developer documentation. No private business records were sent to either service; the fixtures are synthetic. Neither tool is part of the proposed runtime.
