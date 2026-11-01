@@ -57,6 +57,6 @@ Parent execution is limited to documented `delegate` handoffs using registered t
 - For unreadable text, missing evidence, low/absent confidence, conflicting dates, coverage gaps, or uncertain duplicate/version relationships, preserve partial results and mark affected entries **needs review**. Ask a concise clarification question where it could resolve ambiguity; never choose silently.
 - End by reminding the user to verify every item against the cited source. Do not modify files or perform any resulting action.
 
-## Disclosure
+## Package guide and disclosure
 
-See [third-party, source, license, and AI-tool disclosures](references/disclosures.md).
+See the [package README](references/README.md) and [third-party, source, license, and AI-tool disclosures](references/disclosures.md).

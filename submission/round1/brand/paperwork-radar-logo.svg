@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 300" role="img" aria-labelledby="title description">
+  <title id="title">Paperwork Radar</title>
+  <desc id="description">A document with radar arcs beside the Paperwork Radar wordmark.</desc>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M48 34h104l54 54v178H48z" fill="#fff" stroke="#17324d" stroke-width="9"/>
+    <path d="M152 36v52h52" stroke="#17324d" stroke-width="9"/>
+    <path d="M77 91h48M77 111h40" stroke="#91a2b2" stroke-width="7"/>
+    <path d="M82 205a54 54 0 0 1 54-54M82 205a82 82 0 0 1 82-82M82 205a110 110 0 0 1 110-110" stroke="#159b98" stroke-width="8"/>
+    <path d="M82 205l76-76" stroke="#159b98" stroke-width="8"/>
+  </g>
+  <circle cx="158" cy="129" r="10" fill="#efa83b" stroke="#fff" stroke-width="4"/>
+  <circle cx="82" cy="205" r="8" fill="#17324d"/>
+  <text x="285" y="145" fill="#17324d" font-family="Avenir Next, Montserrat, Arial, sans-serif" font-size="68" font-weight="700" letter-spacing="1.5">PAPERWORK RADAR</text>
+  <text x="289" y="199" fill="#506477" font-family="Avenir Next, Montserrat, Arial, sans-serif" font-size="25" font-weight="400" letter-spacing="0.2">Find what's due in your paperwork, with the source to prove it.</text>
+</svg>
