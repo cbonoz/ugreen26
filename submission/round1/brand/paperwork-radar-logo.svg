@@ -1,6 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1248" height="428" viewBox="-64 -64 1248 428" role="img" aria-labelledby="title description">
   <title id="title">Paperwork Radar</title>
   <desc id="description">A document with radar arcs beside the Paperwork Radar wordmark.</desc>
+  <rect x="-64" y="-64" width="1248" height="428" fill="#f5f8fb"/>
   <g fill="none" stroke-linecap="round" stroke-linejoin="round">
     <path d="M48 34h104l54 54v178H48z" fill="#fff" stroke="#17324d" stroke-width="9"/>
     <path d="M152 36v52h52" stroke="#17324d" stroke-width="9"/>
