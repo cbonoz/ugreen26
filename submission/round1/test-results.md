@@ -5,7 +5,7 @@
 - UGREEN’s checker passed the Skill package (`static-pass`), with no errors, warnings, or other diagnostics.
 - Local fixture checks confirmed the invoice and policy date math, both passages for the contract conflict, the expected review flag, and all four synthetic documents. Fixture hashes stayed the same.
 - The checks read local Markdown only. They made no network calls and didn’t change the fixtures.
-- The proposal has ten answers and 434 substantive words. Its PDF is one page and 36,990 bytes.
+- The proposal has ten answers and 427 substantive words. Its PDF is one page and 37,159 bytes.
 
 ## What still needs testing
 
