@@ -1,12 +1,12 @@
 # Local validation results — November 1, 2026
 
-## Tests actually run
+## Checks completed
 
-- The official UGREEN Skill Developer Package 0.7.3 static checker reported `static-pass` with 0 errors, 0 warnings, and 0 info diagnostics for the Skill package.
-- Local fixture/expected-results consistency checks passed: invoice date arithmetic and deadline; distinct policy notice/expiry dates; both contract/amendment passages present in expected results; conflict marked for review; four synthetic documents covering the three required cases; fixture SHA-256 hashes unchanged during the checks.
-- The fixture validator only read local synthetic Markdown and expected results, performed date arithmetic, and made no network calls. Fixture files were not modified by that validation.
-- Proposal validation: ten answers present; 438 substantive words; rendered PDF is one page and 38,002 bytes.
+- UGREEN’s checker passed the Skill package (`static-pass`), with no errors, warnings, or other diagnostics.
+- Local fixture checks confirmed the invoice and policy date math, both passages for the contract conflict, the expected review flag, and all four synthetic documents. Fixture hashes stayed the same.
+- The checks read local Markdown only. They made no network calls and didn’t change the fixtures.
+- The proposal has ten answers and 434 substantive words. Its PDF is one page and 36,990 bytes.
 
-## Not run / remaining test scope
+## What still needs testing
 
-No UGREEN NAS or Uliya runtime was available. The Skill itself was not executed against the fixtures. Actual agent extraction/citations, missed/extra obligations, document readability, NAS permission enforcement, file-side-effect behavior, and external-processing/data-transfer behavior remain untested and must be checked on a finalist NAS with synthetic/anonymized content. Do not interpret the expected-results table or static checker as a runtime test result.
+We haven't run Paperwork Radar on a UGREEN NAS. So far, we’ve only checked the sample date calculations and citations in the expected-results table—not the Skill itself. If we reach the finalist round, we'll test whether it can read the sample files, cite the right passages, flag conflicting dates, stay within the selected folder, and leave files unchanged. We'll use synthetic or anonymized documents while checking how Uliya handles the data.

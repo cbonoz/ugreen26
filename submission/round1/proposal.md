@@ -4,25 +4,25 @@
 
 ## Project proposal (10 answers)
 
-1. **What the Skill does:** Paperwork Radar scans a user-selected NAS folder for upcoming business obligations and returns a reviewable, source-cited checklist without changing files.
+1. **What the Skill does:** Paperwork Radar checks a folder the user selects and turns potential upcoming business obligations into a cited checklist, without changing any files.
 
-2. **Target user and problem:** A solo operator or small-business owner who keeps invoices, insurance policies, permits, and contracts in a folder but may miss dates or overlook fine print.
+2. **Target user and problem:** A solo operator or small-business owner who keeps invoices, policies, permits, and contracts in folders and can lose track of dates buried in them.
 
-3. **Solution:** Extract candidate actions and deadlines; label each date as explicit or calculated; show the calculation and quoted evidence; surface duplicate candidates, conflicting versions, and uncertainty for human review.
+3. **Solution:** It pulls out possible actions and dates, labels dates as stated or calculated, and shows the source passage and math. Duplicates, conflicting versions, and unclear evidence are flagged for review.
 
-4. **Main user flow:** The user selects an authorized folder and an as-of date/time horizon, confirms Uliya document processing is acceptable, then reviews a checklist with action, deadline, date type, filename, passage, and uncertainty. Missing scope or evidence leads to a question or “needs review,” not a guess.
+4. **Main user flow:** The user selects a folder they can access, gives an as-of date and look-ahead window, and confirms Uliya processing is acceptable. Paperwork Radar returns a checklist with the action, date, date type, filename, supporting passage, and any uncertainty. If something is missing or unclear, it asks or marks the item “needs review.”
 
-5. **Difference from common AI tools:** It is a NAS-scoped, read-only workflow that ties each proposed obligation to a file and passage, distinguishes stated from derived dates, and keeps conflicts visible instead of silently resolving them.
+5. **Difference from common AI tools:** Instead of giving a free-floating summary, it links each suggested action to its file and passage. It separates dates found in the document from calculated dates and leaves conflicts visible rather than resolving them silently.
 
-6. **UGREEN AI NAS features and where:** `ug-filesystem` finds documents only in the chosen folder; `ug-filemgr` can scan for duplicate documents; `ug-document` extracts fields, answers evidence-focused questions, and reconciles selected documents. All are documented read capabilities delegated to registered experts.
+6. **UGREEN AI NAS features and where:** `ug-filesystem` finds files in the selected folder; `ug-filemgr` checks for duplicate candidates; `ug-document` extracts details, answers questions with evidence, and compares selected documents. The Skill delegates these documented read operations to Uliya’s registered experts.
 
-7. **Technical approach:** The parent Skill delegates file discovery and optional duplicate scanning to `file-agent`, then passes only discovered paths to `document-agent` for mixed-document extraction, evidence-focused Q&A, and cross-document reconciliation. It requires the selected folder, authorization, a review horizon/as-of date, and permission to use the configured Uliya processing. It never invokes CLI actions directly. The catalog documents `find`, `scan-dedupe`, `extract`, `qa`, and `reconcile`, but not model choice, detailed permissions, or data locality; no model/provider is selected by this Skill. Until those platform details are confirmed, use synthetic/anonymized documents only; no direct third-party API or external transfer is requested.
+7. **Technical approach:** `file-agent` handles `ug-filesystem find` and optional `ug-filemgr scan-dedupe`; `document-agent` handles `ug-document extract` (mixed documents), evidence-focused `qa`, and `reconcile`. The user supplies the folder, confirms access, gives an as-of date and look-ahead window, and approves Uliya processing. The Skill delegates work rather than calling NAS actions itself. The catalog does not specify the model, detailed permissions, or where processing happens, so the Skill selects no model. Until those details are clear, use only synthetic or anonymized documents; no separate third-party API is called.
 
-8. **Built, not built, NAS testing:** The Round 1 Skill package, proposal, synthetic fixtures, and expected results are built. No NAS access or NAS execution is claimed. Runtime installation, readable-format coverage, evidence quality, permission enforcement, processing/data-flow behavior, and Uliya version compatibility remain untested.
+8. **Built, not built, NAS testing:** The proposal, Skill package, and synthetic test documents are ready. We have not run the Skill on a NAS. Installation, document readability, citation quality, permissions, data handling, and Uliya compatibility still need testing.
 
-9. **Finalist tests:** (a) A synthetic September 1, 2026 invoice due within 30 days should yield a calculated October 1 deadline with the rule and passage. (b) A synthetic policy expiring March 31, 2027 with notice 30 days ahead should report March 1 notice and March 31 expiry as distinct, cited dates. Edge: a contract and amendment state different notice dates; cite both and ask for review without choosing.
+9. **Finalist tests:** (a) An invented invoice dated September 1, 2026, due within 30 days, should show October 1 as a calculated deadline and cite the rule. (b) An invented policy expiring March 31, 2027, with notice due 30 days earlier, should show March 1 and March 31 as separate cited dates. Edge case: a contract and amendment give different notice dates; cite both and ask the user to review.
 
-10. **Limits, risks, dependencies:** OCR/readability and supported document types are not guaranteed; extracted obligations can be incomplete or wrong; the catalog marks permissions/prerequisites and service details unknown. Duplicate detection does not establish which version controls. Users must verify every result; this is not legal advice. Depends on Uliya, registered experts, supported NAS capabilities, and user-authorized files.
+10. **Limits, risks, dependencies:** Some files may be unreadable, and extraction may miss or misstate an obligation. A duplicate match does not show which version controls. The catalog leaves model, detailed permissions, and data locality unspecified. Users must check every result; this is not legal advice. The Skill depends on Uliya, its registered experts, and access the user authorizes.
 
 ## Third-party component and license disclosures
 

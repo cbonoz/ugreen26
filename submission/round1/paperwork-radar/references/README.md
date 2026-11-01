@@ -1,17 +1,15 @@
-# Paperwork Radar — Pre-test Skill Package
+# Paperwork Radar — package guide
 
-## What this package contains
+Start with `SKILL.md`. It describes what Paperwork Radar does, what the user needs to provide, which Uliya capabilities it uses, and what happens when a step fails.
 
-- `SKILL.md` — the required Uliya orchestration Skill entry point, including its name/description metadata, user goal, inputs, supported capability mappings, workflow, and failure handling.
-- `references/README.md` — this package guide.
-- `references/disclosures.md` — third-party source/license and AI-tool disclosures, plus data-handling notes.
+The linked [disclosures](disclosures.md) list the development tools, sources, dependencies, and data-handling limits.
 
-## Implementation and dependencies
+## What’s included—and what isn’t
 
-Paperwork Radar is a Markdown orchestration Skill. Its workflow is specified in `SKILL.md`; there is no standalone executable source code, script, dependency lockfile, or separate manifest in this package. The Skill frontmatter is its required name/description metadata. No extra configuration template is needed.
+This is a Markdown orchestration Skill, not a standalone application. The workflow lives in `SKILL.md`; there’s no separate source-code package, script, manifest, or dependency lockfile. The required name and description are in its frontmatter, and no configuration template is needed.
 
-At runtime, the Skill depends on UGREEN Uliya and the registered `file-agent` and `document-agent` experts, using only the documented read capabilities listed in `SKILL.md`. UGREEN's public capability catalog does not specify the runtime model, data locality, retention, or detailed permission semantics. See [disclosures](disclosures.md).
+At runtime, it relies on UGREEN Uliya and its registered `file-agent` and `document-agent` experts. It uses only the read capabilities listed in `SKILL.md`. The public catalog doesn’t say which model runs or specify data location, retention, or permission details.
 
-## Scope and status
+## Testing status
 
-The workflow is designed to produce a human-reviewed checklist of candidate obligations with source passages, distinguish explicit dates from calculations, and flag conflicts. This Round 1 package has passed the official static checker, but has not been installed or run on a UGREEN NAS. Local synthetic fixtures and expected results are kept outside this ZIP.
+The package passed UGREEN’s static checker, but hasn’t been installed or run on a NAS. The synthetic test documents and expected results are kept outside this ZIP.

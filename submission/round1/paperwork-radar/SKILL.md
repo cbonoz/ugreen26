@@ -5,19 +5,17 @@ description: Cited upcoming-obligation checklists with explicit/calculated dates
 
 # Goal
 
-## User goal
-
-**Paperwork Radar** creates a reviewable checklist of potential upcoming business obligations from documents in one folder the user explicitly selects and is authorized to access. Find what's due in the paperwork, with the source to prove it. This is an information-extraction aid, not legal advice. The user reviews every result.
+**Paperwork Radar** checks one folder the user selects and is allowed to access, then returns a checklist of possible upcoming obligations with the source passage for each. It never changes files, and the user must review the results. It is not legal advice.
 
 # Required input
 
-Before delegation, collect:
+Before starting, get:
 
-1. The exact folder the user selected and confirmation that they may access its contents.
-2. The as-of date and look-ahead horizon. If either is missing or ambiguous, ask; do not silently use a guessed NAS clock or horizon.
-3. Confirmation that the user accepts processing by their configured Uliya document expert. The public capability catalog does not identify the selected model, data locality, retention, or detailed permission model. Until those details are known and acceptable, process only synthetic/anonymized content; stop for real private/confidential data.
+1. The exact folder to check, and confirmation the user has access to it.
+2. An as-of date and look-ahead window. If either is missing or unclear, ask rather than guess.
+3. Confirmation that the user accepts processing by their configured Uliya document expert. The public catalog doesn’t name the model or explain data location, retention, or detailed permissions. Until the user has checked those details, use only synthetic or anonymized files; stop if the folder contains real private or confidential records.
 
-Do not broaden scope beyond the selected folder or its contained files. Do not access other folders. Never make payments, send messages, provide legal conclusions, or modify, move, rename, tag, create, or delete files.
+Stay within the selected folder; don’t look elsewhere. Never make payments, send messages, give legal conclusions, or modify, move, rename, tag, create, or delete files.
 
 # Generation-time capability evidence
 
@@ -27,35 +25,35 @@ Use only these catalog entries and only through their registered experts:
 - `ug-filemgr` → `file-agent`
 - `ug-document` → `document-agent`
 
-The `ug-filesystem` `find`/`ls`/`cat`, `ug-filemgr` `scan-dedupe`, and `ug-document` `extract`/`qa`/`reconcile` Actions above are documented read operations. `extract` supports `mixed` schema; `qa` returns answer/evidence/coverage; `reconcile` compares selected documents. A duplicate match does not prove which version is authoritative.
+The catalog lists `ug-filesystem` `find`/`ls`/`cat`, `ug-filemgr` `scan-dedupe`, and `ug-document` `extract`/`qa`/`reconcile` as read operations. `extract` supports `mixed` schema; `qa` returns an answer, evidence, and coverage; `reconcile` compares selected documents. A duplicate match doesn’t tell you which version controls.
 
-The catalog is the authority for supported Actions and parameters. It does not establish OCR coverage, document-format coverage, permission internals, error-code detail, model selection, or external-processing locality. Do not claim those capabilities are guaranteed.
+Use the catalog as the source of truth for supported Actions and parameters. It doesn’t guarantee OCR or file-format coverage, and it doesn’t specify detailed permissions, error behavior, model choice, or where processing happens. Don’t promise otherwise.
 
 # Orchestration
 
-1. **Discover only in scope.** Delegate to `file-agent` with the exact selected folder and request `ug-filesystem find` (or `ls` when an explicit listing is needed) for invoice, insurance, permit, contract, and amendment candidates within that scope. Ask for paths and coverage/limitations. If a directory cannot be read or the result is incomplete, ask the user or report partial coverage; do not expand the path.
-2. **Flag duplicate candidates.** When relevant, delegate to `file-agent` to run `ug-filemgr scan-dedupe` on only the selected folder. Report matches as possible duplicates. Preserve all conflicting/versioned files for review; never silently drop one or infer precedence.
-3. **Extract and cite.** Pass only discovered paths to `document-agent`. Request `ug-document extract` using `mixed` schema for potential obligations and `ug-document qa` with evidence-focused questions to return each action, deadline, source filename, supporting passage, coverage, and failures. Ask for separate entries for every date and for exact date rules. Use `ug-document reconcile` across relevant selected documents to find inconsistencies; retain both cited statements. Do not invent a date if evidence is missing.
-4. **Classify dates.** Mark a date **explicit** only when stated in the source. Mark a date **calculated** only when the source states the applicable rule and inputs; show the arithmetic/calendar interpretation (for example, “September 1 + 30 calendar days = October 1, 2026; September 1 is day zero”). If the rule is ambiguous (calendar/business days, inclusive counting, missing trigger date), flag “needs review.”
-5. **Return a review checklist.** For every candidate include: action; deadline/date; date type (explicit/calculated); calculation explanation when applicable; source filename; supporting passage; uncertainty/confidence as returned or “not provided”; and review flag/reason. Keep expiry and notice dates separate. Include duplicate/version warnings and document coverage/failures. Do not claim a complete audit if extraction coverage is partial.
+1. **Find files in scope.** Ask `file-agent` to use `ug-filesystem find` (or `ls` for a listing) inside the exact folder the user selected. Look for invoices, policies, permits, contracts, and amendments. If the folder can’t be read or results are incomplete, say so; don’t widen the search.
+2. **Check for duplicates when useful.** Ask `file-agent` to run `ug-filemgr scan-dedupe` on that same folder. Call matches possible duplicates, not proof of which version is current. Keep conflicting versions for review.
+3. **Read and compare the returned files.** Use the real results from `file-agent`—actual paths and coverage—as input to `document-agent`. Ask `ug-document extract` with `mixed` schema for possible obligations, `qa` for answers with evidence, and `reconcile` when documents may disagree. For each date, request the action, filename, exact passage, stated rule, and coverage or failures. Keep both sides of a conflict; don’t fill gaps by guessing.
+4. **Label each date.** Call a date **explicit** if the document states it. Call it **calculated** only when the document gives the rule and required dates. Show the math and counting assumption (for example, September 1 + 30 calendar days = October 1, 2026, counting September 1 as day zero). If the rule is unclear—calendar or business days, inclusive counting, or a missing trigger date—mark it **needs review**.
+5. **Give the user a checklist.** For each item, show the action, date, whether it was explicit or calculated, the calculation if any, filename, supporting passage, and uncertainty or “not provided.” Keep notice and expiration dates separate. Include duplicate warnings and any gaps in coverage. Don’t call the scan complete if document reading was partial.
 
-At runtime, include the actual folder selected by the user and the real paths returned by the completed file-agent result in self-contained instructions. Never invent a path. These illustrative forms show the registered targets and task boundaries; `/BusinessFolder` is an example only, not a default NAS path:
+At runtime, put the user’s actual folder and the paths returned by the completed `file-agent` result into each self-contained instruction. Never make up a path. The examples below use `/BusinessFolder` only to show the form; it is not a default path:
 
 - `delegate --target file-agent --instruction 'Within /BusinessFolder selected by the user, use ug-filesystem find for candidate business documents and ug-filemgr scan-dedupe for duplicate candidates. Read only this folder; return paths, coverage, and failures. Make no changes.'`
 - `delegate --target document-agent --instruction 'Using only document paths returned by the completed file-agent result for the selected folder, use ug-document extract with mixed schema, qa with evidence, and reconcile where multiple versions may conflict. Return actions, dates, exact supporting passages, coverage, uncertainties, and failures. Make no changes.'`
 
-Parent execution is limited to documented `delegate` handoffs using registered targets and self-contained instructions, while preserving child/platform approval and permission flows.
+The parent Skill hands work to registered experts with `delegate` and follows the child and platform approval and permission flows.
 
 # Completion and failure
 
-- Report business findings only when the relevant expert returns `completed` with usable real results.
-- On `failed`, report the failed step and available diagnostics; do not fabricate missing results.
-- On `cancelled`, stop and say the scan was cancelled.
-- On `waiting_user`, ask the outstanding question and do not continue dependent work.
-- On `waiting_approval`, report that approval is required; do not proceed without it.
-- For empty results, say no candidate documents/obligations were returned for the selected scope and state what was searched. Never substitute unrelated files.
-- For unreadable text, missing evidence, low/absent confidence, conflicting dates, coverage gaps, or uncertain duplicate/version relationships, preserve partial results and mark affected entries **needs review**. Ask a concise clarification question where it could resolve ambiguity; never choose silently.
-- End by reminding the user to verify every item against the cited source. Do not modify files or perform any resulting action.
+- Share findings only after the expert returns `completed` with usable results.
+- If it returns `failed`, explain which step failed and include any available details. Don’t fill in missing results.
+- If it returns `cancelled`, stop and say the scan was cancelled.
+- If it returns `waiting_user`, ask the outstanding question before continuing.
+- If it returns `waiting_approval`, explain that approval is needed and wait.
+- If there are no results, say what you searched and stop. Don’t switch to other folders.
+- If text is unreadable, evidence is missing, dates conflict, or coverage is incomplete, show any usable partial results and mark affected items **needs review**. Ask the user when clarification could help; don’t silently pick a date.
+- Remind the user to check every item against its cited passage. Don’t take action on their behalf or change files.
 
 ## Package guide and disclosure
 
