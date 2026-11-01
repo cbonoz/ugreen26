@@ -1,11 +1,11 @@
 ---
 name: paperwork-radar
-description: Cited upcoming-obligation checklists with explicit/calculated dates and conflict flags, for when a user asks to review business documents in a selected NAS folder.
+description: Use when a user asks what’s coming due in a selected NAS folder of business documents; returns cited actions and dates, labels calculations, and flags conflicts or gaps.
 ---
 
 # Goal
 
-**Paperwork Radar** checks one folder the user selects and is allowed to access, then returns a checklist of possible upcoming obligations with the source passage for each. It never changes files, and the user must review the results. It is not legal advice.
+**Paperwork Radar** looks in one folder the user selects and can access, then lists possible upcoming obligations with the source passage for each. It never changes files. The user reviews every result; this is not legal advice.
 
 # Required input
 

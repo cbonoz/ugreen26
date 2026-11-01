@@ -1,15 +1,15 @@
-# Paperwork Radar — package guide
+# Paperwork Radar — Skill package
 
-Start with `SKILL.md`. It describes what Paperwork Radar does, what the user needs to provide, which Uliya capabilities it uses, and what happens when a step fails.
+`SKILL.md` is the entry point. It explains the workflow, what the user needs to provide, which Uliya capabilities are documented, and what happens when a step fails.
 
-The linked [disclosures](disclosures.md) list the development tools, sources, dependencies, and data-handling limits.
+The linked [disclosures](disclosures.md) cover sources, licenses, development tools, runtime dependencies, and data handling.
 
 ## What’s included—and what isn’t
 
-This is a Markdown orchestration Skill, not a standalone application. The workflow lives in `SKILL.md`; there’s no separate source-code package, script, manifest, or dependency lockfile. The required name and description are in its frontmatter, and no configuration template is needed.
+Paperwork Radar is an orchestration Skill written in Markdown, not a standalone app. Its workflow is in `SKILL.md`; there’s no separate source-code package, script, manifest, or dependency lockfile. The required name and description are in the Skill’s frontmatter, and it needs no configuration template.
 
-At runtime, it relies on UGREEN Uliya and its registered `file-agent` and `document-agent` experts. It uses only the read capabilities listed in `SKILL.md`. The public catalog doesn’t say which model runs or specify data location, retention, or permission details.
+At runtime, it relies on UGREEN Uliya and its registered `file-agent` and `document-agent` experts. It uses only the read capabilities listed in `SKILL.md`. The public catalog doesn’t identify the model or explain data location, retention, or detailed permissions.
 
 ## Testing status
 
-The package passed UGREEN’s static checker, but hasn’t been installed or run on a NAS. The synthetic test documents and expected results are kept outside this ZIP.
+UGREEN’s static checker passed this package, but it hasn’t been installed or run on a NAS. The synthetic test documents and expected results are outside this ZIP.
